@@ -37,7 +37,7 @@ namespace UI.HUD
 
         private void OnEnable()
         {
-            _turnManager = FindObjectOfType<TurnManager>();
+            _turnManager = FindAnyObjectByType<TurnManager>();
             if (_turnManager == null)
             {
                 Debug.LogWarning($"{typeof(TurnManager)} not found");

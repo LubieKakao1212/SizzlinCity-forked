@@ -108,7 +108,7 @@ namespace Draw2DShapesLite
                 //Generate Handle
                 string name = "Handle " + i;
                 GUI.SetNextControlName(name);
-				myTarget.vertices[i] = Handles.FreeMoveHandle(myTarget.vertices[i] + myTarget.transform.position, Quaternion.identity, handleSize, Vector3.zero, Handles.RectangleHandleCap) - myTarget.transform.position;
+				var fmh_111_103_638787586644511369 = Quaternion.identity; myTarget.vertices[i] = Handles.FreeMoveHandle(myTarget.vertices[i] + myTarget.transform.position, handleSize, Vector3.zero, Handles.RectangleHandleCap) - myTarget.transform.position;
 
                 //If one handle is selected
                 if (GUI.GetNameOfFocusedControl() == name)

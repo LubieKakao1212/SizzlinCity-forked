@@ -84,7 +84,7 @@ namespace UI
                 _animationPanel.gameObject.SetActive(false);
             }
         }
-
+        
         private void UpdateMoneyLabel()
         {
             int points = _turnManager.DisplayedPoints;
