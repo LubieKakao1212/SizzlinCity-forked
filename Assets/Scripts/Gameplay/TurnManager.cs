@@ -1,16 +1,17 @@
-using GridObjects;
-using Grids;
-using InputControll;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using GridObjects;
+using Grids;
+using InputControll;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace GameSystems
 {
-    public class TurnManager : GameSystem
-    {
+    public class TurnManager : GameSystem {
+        public const int Order_HeatManager = 0;
+        
         public class HandField
         {
             public GridObject GridObject { get; private set; }
@@ -32,9 +33,13 @@ namespace GameSystems
         public event Action OnTurnStart;
         public event Action OnReachTurnSkippPoint;
         public event Action OnBuildingTurnEnd;
-        public event Action OnTurnPasses;
-        public event Action OnHeatSmimulationEnd;
 
+        public event Action<GridObject, int> OnIncome;
+        
+        // public event Action OnTurnPasses;
+        private SortedDictionary<int, Func<IEnumerable>> _onTurnPasses = new SortedDictionary<int, Func<IEnumerable>>();
+        public event Action OnHeatSmimulationEnd;
+    
 
         [SerializeField] private TurnCostManager _turnCost;
         [SerializeField] private AudioSource _placeSound;
@@ -45,19 +50,16 @@ namespace GameSystems
         private ConstructionController _constructionController;
         private InputManager _inputManager;
         private WorldGrid _worldGrid;
-
-
-        private const float HEAT_PATIENT_POINTS_MULTIPLIER = 1.5f;
+        
+        // private const float HEAT_PATIENT_POINTS_MULTIPLIER = 1.5f;
 
         private const int CARD_IN_TOUR = 5;
 
 
-        private float _points = 5;
-        private float _heatPenalty = 0;
-        private float _pointsAtRoundStart = 0;
-        public int DisplayedPoints => PointsToDisplayedPoints(_points);
-        public int PointsIncom => PointsToDisplayedPoints(_points - _pointsAtRoundStart + _heatPenalty);
-        public int HeatPenalty => PointsToDisplayedPoints(_heatPenalty);
+        private int _points = 5;
+        private int _pointsAtRoundStart = 0;
+        public int DisplayedPoints => _points;
+        public IncomeData Income { get; private set; }
 
 
         protected override void InitSystem()
@@ -73,6 +75,7 @@ namespace GameSystems
 
             StartCoroutine(StartFirstTour());
         }
+        
         protected override void DeinitSystem()
         {
             _constructionController.OnBuildingBuild -= OnBuildingBuild;
@@ -149,7 +152,7 @@ namespace GameSystems
         }
         private void AddPointForBuilding(GridObject building)
         {
-            float pointsIncome = building.PointsForPlaced;
+            int pointsIncome = building.PointsForPlaced;
             _points += pointsIncome;
         }
 
@@ -167,18 +170,40 @@ namespace GameSystems
 
             yield return new WaitForSeconds(1);
 
-            OnTurnPasses?.Invoke();
+            
+            foreach (var func in _onTurnPasses.Values) {
+                foreach (var ret in func()) {
+                    yield return ret;
+                }
+            }
+            Income = _turnCost.NextTurnIncome(_worldGrid);
 
-            yield return new WaitForSeconds(3.5f);     // wait for heat simulation
+            foreach (var incomeInstance in Income.perObjectIncome) {
+                _points += incomeInstance.income;
+                OnIncome?.Invoke(incomeInstance.Item1, incomeInstance.income);
+                yield return new WaitForSeconds(0.25f);
+            }
+            
+            // yield return new WaitForSeconds(3.5f);     // wait for heat simulation
 
-            _heatPenalty = _turnCost.NextTurnCost(_worldGrid);
-
-            _points -= _heatPenalty * HEAT_PATIENT_POINTS_MULTIPLIER;
-
+            
+            // _heatPenalty = _turnCost.NextTurnIncome(_worldGrid);
+            
+            // _points -= (int)(_heatPenalty * HEAT_PATIENT_POINTS_MULTIPLIER);
+            
             OnHeatSmimulationEnd?.Invoke();
         }
 
         public void NextTurn() => StartCoroutine(NextTurnSequence());
+
+        public void RegisterTurnPassingCallback(Func<IEnumerable> callback, int order) {
+            _onTurnPasses.Add(order, callback);
+        }
+
+        public void UnregisterTurnPassingCallback(int order) {
+            _onTurnPasses.Remove(order);
+        }
+        
         private IEnumerator NextTurnSequence()
         {
             Debug.Log("Start tour");
@@ -209,8 +234,7 @@ namespace GameSystems
         {
             SceneManager.LoadScene("MainMenu");
         }
-
-
-        public static int PointsToDisplayedPoints(float points) => Mathf.RoundToInt(points * 50);
+        
+        // public static int PointsToDisplayedPoints(float points) => Mathf.RoundToInt(points * 50);
     }
 }

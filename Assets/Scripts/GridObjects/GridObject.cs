@@ -75,8 +75,8 @@ namespace GridObjects
         public bool IsPlaced { get; private set; }
 
 
-        [SerializeField] private float _pointsForPlaced = 0.5f;
-        public float PointsForPlaced => _pointsForPlaced;
+        [SerializeField] private int _pointsForPlaced = 50;
+        public int PointsForPlaced => _pointsForPlaced;
 
 
         public void Place()

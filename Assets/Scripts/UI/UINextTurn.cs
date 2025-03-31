@@ -53,13 +53,13 @@ namespace UI
 
             string moneyS = "$";
 
-            int lastValue = _turnManager.DisplayedPoints + _turnManager.HeatPenalty - _turnManager.PointsIncom;
-            _lastPointsLabel.text = lastValue.ToString() + moneyS;
+            // int lastValue = _turnManager.DisplayedPoints + _turnManager.HeatPenalty - _turnManager.PointsIncom;
+            // _lastPointsLabel.text = lastValue.ToString() + moneyS;
 
-            _pointsIncomeLabel.text = _turnManager.PointsIncom.ToString("+#;-#;0") + moneyS;
-            _pointsIncomeLabel.color = _turnManager.PointsIncom >= 0 ? _addMoneyColor : _remMoneyColor;
+            _pointsIncomeLabel.text = _turnManager.Income.totalIncome.ToString("+#;-#;0") + moneyS;
+            _pointsIncomeLabel.color = _turnManager.Income.totalIncome >= 0 ? _addMoneyColor : _remMoneyColor;
 
-            _heatPenaltyLabel.text = _turnManager.HeatPenalty.ToString("-#;-#;0") + moneyS;
+            // _heatPenaltyLabel.text = _turnManager.HeatPenalty.ToString("-#;-#;0") + moneyS;
 
             _finallPointsLabel.text = _turnManager.DisplayedPoints.ToString() + moneyS;
 

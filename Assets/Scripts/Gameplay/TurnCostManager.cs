@@ -2,7 +2,9 @@ using Grids;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using GridObjects;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Util;
 
 namespace GameSystems
@@ -12,8 +14,8 @@ namespace GameSystems
     {
         public float CurrentPoints => (float)points.Time;
 
-        [SerializeField]
-        public float DefaultTurnCost = 0;
+        [FormerlySerializedAs("DefaultTurnCost")] [SerializeField]
+        public int DefaultTurnIncome = 0;
 
         [SerializeField]
         private TimeMachine points;
@@ -23,47 +25,62 @@ namespace GameSystems
             points.Accumulate(amount);
         }
 
-        public float NextTurnCost(WorldGrid grid)
+        public IncomeData NextTurnIncome(WorldGrid grid)
         {
-            var cost = DefaultTurnCost;
-
-            HashSet<GridObjects.GridObject> calculated = new HashSet<GridObjects.GridObject>();
+            var totalIncome = DefaultTurnIncome;
+            var incomeList = new List<(GridObject, int income)>();
+            incomeList.Add((null, DefaultTurnIncome));
+            
+            HashSet<GridObject> calculated = new HashSet<GridObjects.GridObject>();
 
             foreach (var cellPos in grid.GridSize.allPositionsWithin)
             {
                 var cell = grid.GetCell(cellPos);
 
-                if (cell.GridObject != null)
+                if (cell.GridObject)
                 {
                     if (calculated.Contains(cell.GridObject))
                     {
                         continue;
                     }
                     calculated.Add(cell.GridObject);
-                    foreach (var costProvider in cell.GridObject.GetComponents<ICostProvider>())
+                    var objectIncome = 0;
+                    foreach (var incomeProvider in cell.GridObject.GetComponents<IIncomeProvider>())
                     {
-                        var c = costProvider.CurrentCost;
+                        var c = incomeProvider.CurrentIncome;
                         Debug.Log(c);
-                        cost += c;
+                        objectIncome += c;
                     }
+                    totalIncome += objectIncome;
+                    incomeList.Add((cell.GridObject, objectIncome));
                 }
             }
-            return Mathf.Max(cost, 0);
+            return new IncomeData(incomeList, totalIncome);
         }
 
-        public void HandlePointConsumption(WorldGrid grid)
-        {
-            var cost = NextTurnCost(grid);
-            Debug.Log(cost);
-            if (!points.TryRetrieve(cost))
-            {
-                //TODO Handle game end
-            }
-        }
+        // public void HandlePointConsumption(WorldGrid grid)
+        // {
+        //     var cost = NextTurnIncome(grid);
+        //     Debug.Log(cost);
+        //     if (!points.TryRetrieve(cost))
+        //     {
+        //         //TODO Handle game end
+        //     }
+        // }
 
         public void Init(TurnManager manager, WorldGrid grid)
         {
             //manager.TurnPasses += () => HandlePointConsumption(grid);
+        }
+    }
+
+    public struct IncomeData {
+        public readonly int totalIncome;
+        public readonly List<(GridObject, int income)> perObjectIncome;
+
+        public IncomeData(List<(GridObject, int income)> perObjectIncome, int totalIncome) {
+            this.perObjectIncome = perObjectIncome;
+            this.totalIncome = totalIncome;
         }
     }
 }

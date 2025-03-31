@@ -57,7 +57,7 @@ namespace UI
             }
 
 
-            int points = TurnManager.PointsToDisplayedPoints(obj.PointsForPlaced);
+            int points = obj.PointsForPlaced;
 
             _moneyLabel.text = points.ToString("+#;-#;0");
             _moneyLabel.color = points >= 0 ? _addMoneyColor : _remMoneyColor;

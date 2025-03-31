@@ -40,12 +40,12 @@ namespace HeatSimulation
             GenerateOverlay();
 
             _turnManager = _systems.Get<TurnManager>();
-            _turnManager.OnTurnPasses += StartHeatUpdate;
+            _turnManager.RegisterTurnPassingCallback(UpdateHeat, TurnManager.Order_HeatManager);
             _turnManager.OnTurnStart += DisenableOverlay;
         }
         protected override void DeinitSystem() 
         {
-            _turnManager.OnTurnPasses -= StartHeatUpdate;
+            _turnManager.UnregisterTurnPassingCallback(TurnManager.Order_HeatManager);
             _turnManager.OnTurnStart -= DisenableOverlay;
         }
 
@@ -60,8 +60,8 @@ namespace HeatSimulation
         }
 
 
-        private void StartHeatUpdate() => StartCoroutine(UpdateHeat());
-        private IEnumerator UpdateHeat()
+        // private void StartHeatUpdate() => StartCoroutine(UpdateHeat());
+        private IEnumerable UpdateHeat()
         {
             EnableOverlay(true);
             yield return new WaitForSeconds(0.8f);
