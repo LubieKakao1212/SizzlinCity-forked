@@ -1925,21 +1925,29 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3589272265000936331, guid: 42144b6b16f8a30409f5d56e6453fffd, type: 3}
+      propertyPath: _specialObject
+      value: 
+      objectReference: {fileID: 133558519234637615, guid: c7f3625281a3ef44cac8a40b5326c822, type: 3}
+    - target: {fileID: 3589272265000936331, guid: 42144b6b16f8a30409f5d56e6453fffd, type: 3}
       propertyPath: _objectsRandomiser.defaultBucket.Array.size
-      value: 8
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3589272265000936331, guid: 42144b6b16f8a30409f5d56e6453fffd, type: 3}
-      propertyPath: '_objectsRandomiser.defaultBucket.Array.data[1]'
+      propertyPath: '_objectsRandomiser.defaultBucket.Array.data[0]'
       value: 
       objectReference: {fileID: 8560315858942571693, guid: 6b322c7840c031143958dc6886befa9e, type: 3}
     - target: {fileID: 3589272265000936331, guid: 42144b6b16f8a30409f5d56e6453fffd, type: 3}
-      propertyPath: '_objectsRandomiser.defaultBucket.Array.data[2]'
+      propertyPath: '_objectsRandomiser.defaultBucket.Array.data[1]'
       value: 
       objectReference: {fileID: 2239860398066929494, guid: 5149e6108e10f564a98af6502633e6d8, type: 3}
     - target: {fileID: 3589272265000936331, guid: 42144b6b16f8a30409f5d56e6453fffd, type: 3}
-      propertyPath: '_objectsRandomiser.defaultBucket.Array.data[3]'
+      propertyPath: '_objectsRandomiser.defaultBucket.Array.data[2]'
       value: 
       objectReference: {fileID: 7769457242677686541, guid: 9467f75bc920b564fb8c4400a1bae02c, type: 3}
+    - target: {fileID: 3589272265000936331, guid: 42144b6b16f8a30409f5d56e6453fffd, type: 3}
+      propertyPath: '_objectsRandomiser.defaultBucket.Array.data[3]'
+      value: 
+      objectReference: {fileID: 2063643360594871761, guid: 85f430e03057fca43bb7066b443cd059, type: 3}
     - target: {fileID: 3589272265000936331, guid: 42144b6b16f8a30409f5d56e6453fffd, type: 3}
       propertyPath: '_objectsRandomiser.defaultBucket.Array.data[4]'
       value: 
@@ -1956,6 +1964,10 @@ PrefabInstance:
       propertyPath: '_objectsRandomiser.defaultBucket.Array.data[7]'
       value: 
       objectReference: {fileID: 133558519234637615, guid: c7f3625281a3ef44cac8a40b5326c822, type: 3}
+    - target: {fileID: 3589272265000936331, guid: 42144b6b16f8a30409f5d56e6453fffd, type: 3}
+      propertyPath: '_objectsRandomiser.defaultBucket.Array.data[8]'
+      value: 
+      objectReference: {fileID: 2063643360594871761, guid: 85f430e03057fca43bb7066b443cd059, type: 3}
     - target: {fileID: 3589272265000936331, guid: 42144b6b16f8a30409f5d56e6453fffd, type: 3}
       propertyPath: '_objectsRandomiser.defaultBucket.Array.data[45]'
       value: 

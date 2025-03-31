@@ -27,12 +27,14 @@ namespace UI.HUD
         [SerializeField] private Button _switchButton;
         [SerializeField] private TextMeshProUGUI _switchButtonLabel;
 
-
+        [SerializeField] private UIHUDCard roadCard;
+        [SerializeField] private GridObject roadObject;
+        
         private readonly List<UIHUDCard> _displayedCards = new();
         private readonly List<UIHUDCard> _unusedCards = new();
 
         private bool _isOpen = true;
-
+        
         private TurnManager _turnManager;
 
         private void OnEnable()
@@ -72,6 +74,8 @@ namespace UI.HUD
             }
 
             _canvas.enabled = _displayedCards.Count > 0;
+
+            SetupRoadCard();
         }
 
         public void AddCard(GridObject obj, int index, bool isSelected)
@@ -105,6 +109,14 @@ namespace UI.HUD
             _turnManager.SelectCard(index, !card.IsSelected);
         }
 
+        private void SetupRoadCard() {
+            roadCard.Show(roadObject.DisplayedName, roadObject.Icon, 0, false, SpecialCardClick);
+        }
+
+        private void SpecialCardClick() {
+            _turnManager.SelectSpecialCard();
+        }
+        
 
         private void SwitchOpen() => SetOpen(!_isOpen);
         private void SetOpen(bool open)

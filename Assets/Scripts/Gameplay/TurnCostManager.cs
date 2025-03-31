@@ -51,8 +51,11 @@ namespace GameSystems
                         Debug.Log(c);
                         objectIncome += c;
                     }
-                    totalIncome += objectIncome;
-                    incomeList.Add((cell.GridObject, objectIncome));
+
+                    if (objectIncome != 0) {
+                        totalIncome += objectIncome;
+                        incomeList.Add((cell.GridObject, objectIncome));
+                    }
                 }
             }
             return new IncomeData(incomeList, totalIncome);

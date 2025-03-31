@@ -45,7 +45,8 @@ namespace GameSystems
         [SerializeField] private AudioSource _placeSound;
 
         [SerializeField] private BucketRandom<GridObject> _objectsRandomiser;
-
+        [SerializeField] private GridObject _specialObject;
+        
 
         private ConstructionController _constructionController;
         private InputManager _inputManager;
@@ -53,10 +54,10 @@ namespace GameSystems
         
         // private const float HEAT_PATIENT_POINTS_MULTIPLIER = 1.5f;
 
-        private const int CARD_IN_TOUR = 5;
+        private const int CARD_IN_TOUR = 4;
 
 
-        private int _points = 5;
+        [SerializeField] private int _points = 100;
         private int _pointsAtRoundStart = 0;
         public int DisplayedPoints => _points;
         public IncomeData Income { get; private set; }
@@ -75,15 +76,13 @@ namespace GameSystems
 
             StartCoroutine(StartFirstTour());
         }
-        
         protected override void DeinitSystem()
         {
             _constructionController.OnBuildingBuild -= OnBuildingBuild;
 
             _inputManager.GameResetAction.Ended -= ResetGame;
         }
-
-
+        
         private readonly List<HandField> _handCards = new();
         public IReadOnlyList<HandField> HandCards => _handCards;
         public event Action OnHandChanged;
@@ -122,6 +121,10 @@ namespace GameSystems
             return _handCards[index];
         }
 
+        public void SelectSpecialCard() {
+            SelectCard(0, false);
+            _constructionController.SetObject(_specialObject);
+        }
 
         private void OnBuildingBuild((GridObject placed, GridObject pattern) value)
         {
@@ -137,7 +140,7 @@ namespace GameSystems
                 }
             }
 
-            if (!wasBuildingInHand)
+            if (!wasBuildingInHand && value.pattern != _specialObject)
                 return;
 
             _placeSound.Play();
@@ -147,8 +150,8 @@ namespace GameSystems
 
             AddPointForBuilding(value.pattern);
 
-            if (_handCards.Count == 0)
-                EndTour();
+            // if (_handCards.Count == 0)
+            //     EndTour();
         }
         private void AddPointForBuilding(GridObject building)
         {

@@ -1,3 +1,4 @@
+using System.Linq;
 using DG.Tweening;
 using GameSystems;
 using GridObjects;
@@ -28,6 +29,7 @@ namespace UI
 
         private TurnManager _turnManager;
         private ConstructionController _constructionController;
+        private Tweener moneyShakeTweener = null;
 
         private void OnEnable() {
             _constructionController = SystemsManager.Instance.Get<ConstructionController>();
@@ -70,13 +72,18 @@ namespace UI
             
             labelText.text = amount.ToString("+#;-#;0");
             labelText.color = amount >= 0 ? _addMoneyColor : _remMoneyColor;
-            
-            var worldPos = source ? source.transform.position + Vector3.up * 1 : Vector3.zero;
+
+            var worldPos = Vector3.zero;
+            if (source != null) {
+                var gridPos = source.OccupiedTiles.Aggregate((i, vector2Int) => i + vector2Int);
+                worldPos = new Vector3(gridPos.x + 0.5f, source.transform.position.y + 1f, gridPos.y + 0.5f);
+            }
             Vector3 screenPos = Camera.main!.WorldToScreenPoint(worldPos);
+
+            Hide();
             
             // _animationSeq.Kill();
             var sequence = DOTween.Sequence()
-                    .AppendCallback(Hide)
                     .AppendInterval(.4f)
                     .AppendCallback(Show)
                     .Append(labelTransform.DOScale(Vector3.one, .4f).SetEase(Ease.OutBack))
@@ -104,7 +111,8 @@ namespace UI
             int points = _turnManager.DisplayedPoints;
             _mainMoneyLabel.text = points.ToString();
             _mainMoneyLabel.color = points >= 0 ? _addMoneyColor : _remMoneyColor;
-            _mainMoneyLabel.rectTransform.DOShakeScale(.4f, .5f);
+            moneyShakeTweener?.Complete();
+            moneyShakeTweener = _mainMoneyLabel.rectTransform.DOShakeScale(.4f, .5f);
         }
     }
 }
