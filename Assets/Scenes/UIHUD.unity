@@ -1005,27 +1005,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 866469641921129882, guid: cca61e5bf55f1694f8ad74be230c20f9, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 866469641921129882, guid: cca61e5bf55f1694f8ad74be230c20f9, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 866469641921129882, guid: cca61e5bf55f1694f8ad74be230c20f9, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 156
       objectReference: {fileID: 0}
     - target: {fileID: 866469641921129882, guid: cca61e5bf55f1694f8ad74be230c20f9, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 75.5802
       objectReference: {fileID: 0}
     - target: {fileID: 866469641921129882, guid: cca61e5bf55f1694f8ad74be230c20f9, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 78
       objectReference: {fileID: 0}
     - target: {fileID: 866469641921129882, guid: cca61e5bf55f1694f8ad74be230c20f9, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -37.7901
       objectReference: {fileID: 0}
     - target: {fileID: 866469642176632535, guid: cca61e5bf55f1694f8ad74be230c20f9, type: 3}
       propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
@@ -1952,7 +1952,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1023038620}
   m_Layer: 5
-  m_Name: HeatPoints
+  m_Name: InvestmentPoints
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3213,7 +3213,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Heat:'
+  m_text: 'Investments:'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4066,7 +4066,7 @@ MonoBehaviour:
   _remMoneyColor: {r: 0.8980393, g: 0.30980393, b: 0.30980393, a: 1}
   _lastPointsLabel: {fileID: 1000286611}
   _pointsIncomeLabel: {fileID: 124287027}
-  _heatPenaltyLabel: {fileID: 2021778709}
+  _investmentIncomeLabel: {fileID: 2021778709}
   _finallPointsLabel: {fileID: 641159807}
   _pointsSound: {fileID: 1993032763}
 --- !u!82 &1993032763

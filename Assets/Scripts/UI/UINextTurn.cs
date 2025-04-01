@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Serialization;
 
 namespace UI
 {
@@ -20,7 +21,7 @@ namespace UI
         [Header("Labels")]
         [SerializeField] private TextMeshProUGUI _lastPointsLabel;
         [SerializeField] private TextMeshProUGUI _pointsIncomeLabel;
-        [SerializeField] private TextMeshProUGUI _heatPenaltyLabel;
+        [FormerlySerializedAs("_heatPenaltyLabel")] [SerializeField] private TextMeshProUGUI _investmentIncomeLabel;
         [SerializeField] private TextMeshProUGUI _finallPointsLabel;
 
         [Space(20)]
@@ -53,14 +54,17 @@ namespace UI
 
             string moneyS = "$";
 
-            // int lastValue = _turnManager.DisplayedPoints + _turnManager.HeatPenalty - _turnManager.PointsIncom;
-            // _lastPointsLabel.text = lastValue.ToString() + moneyS;
+            var lastPoints = _turnManager.PointsAtRoundStart;
+            _lastPointsLabel.text = lastPoints + moneyS;
 
-            _pointsIncomeLabel.text = _turnManager.Income.totalIncome.ToString("+#;-#;0") + moneyS;
-            _pointsIncomeLabel.color = _turnManager.Income.totalIncome >= 0 ? _addMoneyColor : _remMoneyColor;
+            var maintenanceIncome = _turnManager.Income.totalIncome;
+            _pointsIncomeLabel.text = maintenanceIncome.ToString("+#;-#;0") + moneyS;
+            _pointsIncomeLabel.color = maintenanceIncome >= 0 ? _addMoneyColor : _remMoneyColor;
 
-            // _heatPenaltyLabel.text = _turnManager.HeatPenalty.ToString("-#;-#;0") + moneyS;
-
+            int investValue = _turnManager.DisplayedPoints - lastPoints - maintenanceIncome;
+            _investmentIncomeLabel.text = investValue.ToString("+#;-#;0") + moneyS;
+            _investmentIncomeLabel.color = investValue >= 0 ? _addMoneyColor : _remMoneyColor;
+            
             _finallPointsLabel.text = _turnManager.DisplayedPoints.ToString() + moneyS;
 
             StartCoroutine(AnimText());
@@ -72,7 +76,7 @@ namespace UI
 
         private IEnumerator AnimText()
         {
-            var labels = new List<TextMeshProUGUI> { _lastPointsLabel, _pointsIncomeLabel, _heatPenaltyLabel, _finallPointsLabel };
+            var labels = new List<TextMeshProUGUI> { _lastPointsLabel, _pointsIncomeLabel, _investmentIncomeLabel, _finallPointsLabel };
             foreach (var item in labels)
                 item.alpha = 0;
 

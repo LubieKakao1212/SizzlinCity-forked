@@ -61,6 +61,7 @@ namespace GameSystems
         private int _pointsAtRoundStart = 0;
         public int DisplayedPoints => _points;
         public IncomeData Income { get; private set; }
+        public int PointsAtRoundStart => _pointsAtRoundStart;
 
 
         protected override void InitSystem()
