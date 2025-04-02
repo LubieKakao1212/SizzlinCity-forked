@@ -12,7 +12,8 @@ namespace UI
     {
         [SerializeField] private Canvas _canvas;
 
-        [SerializeField] private Button _nextButton;
+        [FormerlySerializedAs("_nextButton")] [SerializeField] private Button _nextTurnButton;
+        [SerializeField] private Button _gameEndButton;
 
         [Header("Colors")]
         [SerializeField] private Color _addMoneyColor;
@@ -35,7 +36,8 @@ namespace UI
             _turnManager.OnHeatSmimulationEnd += Open;
             _turnManager.OnTurnStart += Close;
 
-            _nextButton.onClick.AddListener(PlayNextRound);
+            _nextTurnButton.onClick.AddListener(PlayNextRound);
+            _gameEndButton.onClick.AddListener(EndGame);
         }
         private void OnDisable()
         {
@@ -45,10 +47,10 @@ namespace UI
                 _turnManager.OnTurnStart -= Close;
             }
 
-            _nextButton.onClick.RemoveListener(PlayNextRound);
+            _nextTurnButton.onClick.RemoveListener(PlayNextRound);
         }
 
-        private void Open()
+        private void Open(bool gameEnded)
         {
             _canvas.enabled = true;
 
@@ -66,7 +68,11 @@ namespace UI
             _investmentIncomeLabel.color = investValue >= 0 ? _addMoneyColor : _remMoneyColor;
             
             _finallPointsLabel.text = _turnManager.DisplayedPoints.ToString() + moneyS;
-
+            
+            _gameEndButton.gameObject.SetActive(gameEnded);
+            _nextTurnButton.gameObject.SetActive(!gameEnded);
+            
+            
             StartCoroutine(AnimText());
         }
         private void Close()
@@ -91,5 +97,7 @@ namespace UI
         }
 
         private void PlayNextRound() => _turnManager.NextTurn();
+
+        private void EndGame() => _turnManager.ResetGame();
     }
 }

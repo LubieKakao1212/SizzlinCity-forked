@@ -62,7 +62,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6534487884623589374, guid: 49edf549ee8ebe44c9cf96a8315e966c, type: 3}
       propertyPath: coef
-      value: 0
+      value: -150
       objectReference: {fileID: 0}
     - target: {fileID: 6645842533183990704, guid: 49edf549ee8ebe44c9cf96a8315e966c, type: 3}
       propertyPath: m_Mesh

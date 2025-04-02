@@ -50,15 +50,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3993901627171407710, guid: 49edf549ee8ebe44c9cf96a8315e966c, type: 3}
       propertyPath: _income
-      value: 30
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 3993901627171407710, guid: 49edf549ee8ebe44c9cf96a8315e966c, type: 3}
+      propertyPath: _incomeChangePerTurn
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5974259446892183663, guid: 49edf549ee8ebe44c9cf96a8315e966c, type: 3}
       propertyPath: m_Name
-      value: Building_Residance_Base Variant
+      value: Building_Residance_Base
       objectReference: {fileID: 0}
     - target: {fileID: 6534487884623589374, guid: 49edf549ee8ebe44c9cf96a8315e966c, type: 3}
       propertyPath: min
-      value: 0
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 6534487884623589374, guid: 49edf549ee8ebe44c9cf96a8315e966c, type: 3}
       propertyPath: coef

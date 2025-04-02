@@ -38,15 +38,15 @@ namespace GameSystems
         
         // public event Action OnTurnPasses;
         private SortedDictionary<int, Func<IEnumerable>> _onTurnPasses = new SortedDictionary<int, Func<IEnumerable>>();
-        public event Action OnHeatSmimulationEnd;
+        public event Action<bool> OnHeatSmimulationEnd;
     
 
         [SerializeField] private TurnCostManager _turnCost;
         [SerializeField] private AudioSource _placeSound;
 
-        [SerializeField] private BucketRandom<GridObject> _objectsRandomiser;
+        [SerializeField] private BucketRandom<BucketRandom<GridObject>> _objectsRandomiser;
         [SerializeField] private GridObject _specialObject;
-        
+        [SerializeField] private int _turnsUntilGameEnd = 10;
 
         private ConstructionController _constructionController;
         private InputManager _inputManager;
@@ -161,14 +161,18 @@ namespace GameSystems
         }
 
 
-        public void EndTour() => StartCoroutine(EndTurnSequence());
+        public void EndTour() {
+            StartCoroutine(EndTurnSequence());
+        }
+
         private IEnumerator EndTurnSequence()
         {
             Debug.Log("End tour");
 
             _constructionController.SetObject(null);
             OnBuildingTurnEnd?.Invoke();
-
+            
+            //TODO calculate lost cards income
             _handCards.Clear();
             OnHandChanged?.Invoke();
 
@@ -195,7 +199,7 @@ namespace GameSystems
             
             // _points -= (int)(_heatPenalty * HEAT_PATIENT_POINTS_MULTIPLIER);
             
-            OnHeatSmimulationEnd?.Invoke();
+            OnHeatSmimulationEnd?.Invoke(--_turnsUntilGameEnd == 0);
         }
 
         public void NextTurn() => StartCoroutine(NextTurnSequence());
@@ -221,7 +225,7 @@ namespace GameSystems
             for (int i = 0; i < CARD_IN_TOUR; i++)
             {
                 yield return new WaitForSeconds(0.2f);
-                _handCards.Add(new(_objectsRandomiser.GetRandom()));
+                _handCards.Add(new(_objectsRandomiser.GetRandom().GetRandom()));
                 OnHandChanged?.Invoke();
             }
         }
@@ -234,7 +238,7 @@ namespace GameSystems
         }
 
 
-        private void ResetGame()
+        public void ResetGame()
         {
             SceneManager.LoadScene("MainMenu");
         }

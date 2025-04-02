@@ -140,8 +140,12 @@ namespace UI.Tutorial
         }
 
 
-        private void ShowEndTurnTip()
+        private void ShowEndTurnTip(bool gameHasEnded)
         {
+            if(gameHasEnded) {
+                return;
+            }
+            
             if (_showEndTurnTipC == null)
                 _showEndTurnTipC = StartCoroutine(ShowEndTurnTipC());
         }
