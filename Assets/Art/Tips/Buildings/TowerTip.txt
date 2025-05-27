@@ -1,0 +1,2 @@
+<color=#33ccff>Office Towers</color> give large amount of money upon being built, and have high (but finite) resistance to heat, but have minor maintenance costs.
+<b><color=#0b0b0b>Do not Overheat</color></b>

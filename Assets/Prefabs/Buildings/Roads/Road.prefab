@@ -60,7 +60,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d5be0aa869284e94e9d06f35acdd2296, type: 2}
   _deltaHot: 0
   <IsPlaced>k__BackingField: 0
-  _pointsForPlaced: -10
+  _pointsForPlaced: -5
 --- !u!114 &4665093393884323770
 MonoBehaviour:
   m_ObjectHideFlags: 0

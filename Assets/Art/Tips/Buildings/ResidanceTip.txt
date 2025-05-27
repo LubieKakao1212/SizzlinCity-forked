@@ -1,0 +1,1 @@
+<color=#99ccff>Residances</color> give increasing passive income per turn, but have no resistance to heat

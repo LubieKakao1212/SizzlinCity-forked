@@ -50,7 +50,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3993901627171407710, guid: 49edf549ee8ebe44c9cf96a8315e966c, type: 3}
       propertyPath: _income
-      value: -5
+      value: 75
       objectReference: {fileID: 0}
     - target: {fileID: 5974259446892183663, guid: 49edf549ee8ebe44c9cf96a8315e966c, type: 3}
       propertyPath: m_Name
@@ -58,11 +58,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6534487884623589374, guid: 49edf549ee8ebe44c9cf96a8315e966c, type: 3}
       propertyPath: min
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6534487884623589374, guid: 49edf549ee8ebe44c9cf96a8315e966c, type: 3}
       propertyPath: coef
-      value: -150
+      value: -100
       objectReference: {fileID: 0}
     - target: {fileID: 6645842533183990704, guid: 49edf549ee8ebe44c9cf96a8315e966c, type: 3}
       propertyPath: m_Mesh
@@ -73,6 +73,10 @@ PrefabInstance:
       value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 9113226458626661430, guid: 49edf549ee8ebe44c9cf96a8315e966c, type: 3}
+      propertyPath: _icon
+      value: 
+      objectReference: {fileID: 21300000, guid: 5b9cc286e61c52b45b808afe4d2b8432, type: 3}
+    - target: {fileID: 9113226458626661430, guid: 49edf549ee8ebe44c9cf96a8315e966c, type: 3}
       propertyPath: _name
       value: 'Office Tower '
       objectReference: {fileID: 0}
@@ -82,7 +86,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9113226458626661430, guid: 49edf549ee8ebe44c9cf96a8315e966c, type: 3}
       propertyPath: _pointsForPlaced
-      value: 500
+      value: -30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

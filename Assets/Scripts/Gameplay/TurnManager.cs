@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using GridObjects;
 using Grids;
 using InputControll;
@@ -56,6 +57,7 @@ namespace GameSystems
 
         private const int CARD_IN_TOUR = 4;
 
+        public GridObject SelectedCard => _handCards.FirstOrDefault(field => field.IsSelected)?.GridObject;
 
         [SerializeField] private int _points = 100;
         private int _pointsAtRoundStart = 0;

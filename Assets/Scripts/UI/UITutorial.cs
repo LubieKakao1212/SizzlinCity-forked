@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using GameSystems;
+using GridObjects;
 using HeatSimulation;
 
 namespace UI.Tutorial
@@ -18,7 +20,9 @@ namespace UI.Tutorial
         [SerializeField] private TextAsset _endTurnTipText;
         [SerializeField] private TextAsset _heatOverlayTipText;
 
-
+        [SerializeField] private TextAsset[] _buildingTips;
+        [SerializeField] private GridObject[] _buildingsForTips;
+        
         private TurnManager _turnManager;
         private HeatManager _heatManager;
 
@@ -41,6 +45,7 @@ namespace UI.Tutorial
             _turnManager.OnTurnStart += ShowResetTip;
             _turnManager.OnHandChanged += ShowSelectCardTip;
             _turnManager.OnHandChanged += ShowBuildTip;
+            _turnManager.OnHandChanged += ShowSelectedBuildingTip;
             _turnManager.OnHeatSmimulationEnd += ShowEndTurnTip;
 
             _heatManager = SystemsManager.Instance.Get<HeatManager>();
@@ -53,6 +58,7 @@ namespace UI.Tutorial
             _turnManager.OnTurnStart -= ShowResetTip;
             _turnManager.OnHandChanged -= ShowSelectCardTip;
             _turnManager.OnHandChanged -= ShowBuildTip;
+            _turnManager.OnHandChanged -= ShowSelectedBuildingTip;
             _turnManager.OnHeatSmimulationEnd -= ShowEndTurnTip;
 
             _heatManager.OnOverlaySwitch -= ShowHeatOverlayTip;
@@ -107,12 +113,20 @@ namespace UI.Tutorial
             bool ShouldShow() => _turnManager.HandCards.Count > 0 && !IsCardSelected();
         }
 
+        private void ShowSelectedBuildingTip() {
+            var building = _turnManager.SelectedCard;
+            if (building != null) {
+                //Cursed
+                TryShowMess(_buildingsForTips.Zip(_buildingTips, (o, asset) => o == building ? asset : null).First(asset => asset != null));
+            }
+        }
+        
 
         private void ShowBuildTip()
         {
             if (!IsCardSelected())
                 return;
-
+            
             if (_showBuildTipC == null)
                 _showBuildTipC = StartCoroutine(ShowBuildTipC());
         }

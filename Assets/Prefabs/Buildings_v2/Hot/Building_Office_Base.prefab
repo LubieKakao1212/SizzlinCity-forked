@@ -54,7 +54,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5974259446892183663, guid: 49edf549ee8ebe44c9cf96a8315e966c, type: 3}
       propertyPath: m_Name
-      value: Building_Office_Base Variant
+      value: Building_Office_Base
       objectReference: {fileID: 0}
     - target: {fileID: 6534487884623589374, guid: 49edf549ee8ebe44c9cf96a8315e966c, type: 3}
       propertyPath: min
@@ -72,6 +72,10 @@ PrefabInstance:
       propertyPath: heatGeneration
       value: 0.1
       objectReference: {fileID: 0}
+    - target: {fileID: 9113226458626661430, guid: 49edf549ee8ebe44c9cf96a8315e966c, type: 3}
+      propertyPath: _icon
+      value: 
+      objectReference: {fileID: 21300000, guid: b675d8e4dd54c0b4faec17bf6d32f6a4, type: 3}
     - target: {fileID: 9113226458626661430, guid: 49edf549ee8ebe44c9cf96a8315e966c, type: 3}
       propertyPath: _name
       value: Mall

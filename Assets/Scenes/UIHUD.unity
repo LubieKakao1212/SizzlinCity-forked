@@ -4391,7 +4391,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1993032757}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
@@ -5002,6 +5002,42 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6444807280887085434, guid: 5e1abc953b1419c48858f910c1839af1, type: 3}
+      propertyPath: _buildingTips.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6444807280887085434, guid: 5e1abc953b1419c48858f910c1839af1, type: 3}
+      propertyPath: '_buildingTips.Array.data[0]'
+      value: 
+      objectReference: {fileID: 4900000, guid: 1fd140fc8d6e0ed46bbbacb69a5eaaa3, type: 3}
+    - target: {fileID: 6444807280887085434, guid: 5e1abc953b1419c48858f910c1839af1, type: 3}
+      propertyPath: '_buildingTips.Array.data[1]'
+      value: 
+      objectReference: {fileID: 4900000, guid: d8d503d2e57f82249bbbb701c6dd77cc, type: 3}
+    - target: {fileID: 6444807280887085434, guid: 5e1abc953b1419c48858f910c1839af1, type: 3}
+      propertyPath: '_buildingTips.Array.data[2]'
+      value: 
+      objectReference: {fileID: 4900000, guid: 84e5b337f7d000345a90082699694d04, type: 3}
+    - target: {fileID: 6444807280887085434, guid: 5e1abc953b1419c48858f910c1839af1, type: 3}
+      propertyPath: _buildingsForTips.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6444807280887085434, guid: 5e1abc953b1419c48858f910c1839af1, type: 3}
+      propertyPath: '_buildingsForTips.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2063643360594871761, guid: 85f430e03057fca43bb7066b443cd059, type: 3}
+    - target: {fileID: 6444807280887085434, guid: 5e1abc953b1419c48858f910c1839af1, type: 3}
+      propertyPath: '_buildingsForTips.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2239860398066929494, guid: 5149e6108e10f564a98af6502633e6d8, type: 3}
+    - target: {fileID: 6444807280887085434, guid: 5e1abc953b1419c48858f910c1839af1, type: 3}
+      propertyPath: '_buildingsForTips.Array.data[2]'
+      value: 
+      objectReference: {fileID: 7769457242677686541, guid: 9467f75bc920b564fb8c4400a1bae02c, type: 3}
+    - target: {fileID: 6444807280887085434, guid: 5e1abc953b1419c48858f910c1839af1, type: 3}
+      propertyPath: '_buildingsForTips.Array.data[3]'
+      value: 
+      objectReference: {fileID: 8560315858942571693, guid: 6b322c7840c031143958dc6886befa9e, type: 3}
     - target: {fileID: 6444807280887085435, guid: 5e1abc953b1419c48858f910c1839af1, type: 3}
       propertyPath: m_Name
       value: TutorialCanva

@@ -1934,7 +1934,7 @@ PrefabInstance:
       objectReference: {fileID: 133558519234637615, guid: c7f3625281a3ef44cac8a40b5326c822, type: 3}
     - target: {fileID: 3589272265000936331, guid: 42144b6b16f8a30409f5d56e6453fffd, type: 3}
       propertyPath: _turnsUntilGameEnd
-      value: 10
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 3589272265000936331, guid: 42144b6b16f8a30409f5d56e6453fffd, type: 3}
       propertyPath: _objectsRandomiser.defaultBucket.Array.size
@@ -1990,7 +1990,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3589272265000936331, guid: 42144b6b16f8a30409f5d56e6453fffd, type: 3}
       propertyPath: _objectsRandomiser.defaultBucket.Array.data[1].defaultBucket.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3589272265000936331, guid: 42144b6b16f8a30409f5d56e6453fffd, type: 3}
       propertyPath: _objectsRandomiser.defaultBucket.Array.data[2].defaultBucket.Array.size
@@ -2015,7 +2015,7 @@ PrefabInstance:
     - target: {fileID: 3589272265000936331, guid: 42144b6b16f8a30409f5d56e6453fffd, type: 3}
       propertyPath: '_objectsRandomiser.defaultBucket.Array.data[1].defaultBucket.Array.data[1]'
       value: 
-      objectReference: {fileID: 8560315858942571693, guid: 6b322c7840c031143958dc6886befa9e, type: 3}
+      objectReference: {fileID: 2239860398066929494, guid: 5149e6108e10f564a98af6502633e6d8, type: 3}
     - target: {fileID: 3589272265000936331, guid: 42144b6b16f8a30409f5d56e6453fffd, type: 3}
       propertyPath: '_objectsRandomiser.defaultBucket.Array.data[2].defaultBucket.Array.data[0]'
       value: 
